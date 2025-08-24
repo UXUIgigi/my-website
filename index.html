@@ -161,14 +161,6 @@
             margin-bottom: 10px;
         }
 
-        .hero h2 {
-            font-family: 'Coiny', cursive;
-            font-size: 48px;
-            font-weight: 400;
-            color: #888;
-            margin-bottom: 30px;
-        }
-
         .hero-description {
             margin-bottom: 20px;
         }
@@ -198,25 +190,28 @@
         }
 
         .hero-character {
-            flex: 0 0 500px;
+            flex: 0 0 400px;
             text-align: center;
         }
 
-        .character-img {
+        .character-placeholder {
             width: 100%;
-            max-width: 500px;
-            height: auto;
-            filter: drop-shadow(0 20px 40px rgba(0,0,0,0.15));
-            object-fit: contain;
+            height: 400px;
+            background: linear-gradient(135deg, #E18335 0%, #f97316 100%);
             border-radius: 20px;
-            padding: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 24px;
+            font-weight: bold;
+            box-shadow: 0 20px 40px rgba(225, 131, 53, 0.3);
             transition: all 0.4s ease;
-            cursor: pointer;
         }
 
-        .character-img:hover {
+        .character-placeholder:hover {
             transform: translateY(-10px) rotate(2deg) scale(1.02);
-            filter: drop-shadow(0 30px 60px rgba(0,0,0,0.2));
+            box-shadow: 0 30px 60px rgba(225, 131, 53, 0.4);
         }
 
         /* Projects Section */
@@ -246,11 +241,11 @@
         .hover-card {
             position: relative;
             width: 100%;
-            height: 500px; /* Increased height to accommodate larger image */
+            height: 500px;
             background: #6b7280;
             border: none;
             border-radius: 20px;
-            padding: 25px; /* Reduced padding slightly */
+            padding: 25px;
             cursor: pointer;
             overflow: visible;
             transition: all 0.6s cubic-bezier(0.25, 0.8, 0.25, 1);
@@ -287,23 +282,23 @@
             opacity: 0.9;
             margin-bottom: 20px;
             text-transform: none;
-            flex-shrink: 0; /* Prevent text from shrinking */
+            flex-shrink: 0;
         }
 
         .card-image {
             width: 100%;
-            height: 220px; /* Increased from 160px to 220px */
+            height: 220px;
             border-radius: 12px;
             object-fit: cover;
             margin-top: auto;
             transition: transform 0.4s ease;
-            border: 3px solid rgba(255, 255, 255, 0.2); /* Added subtle border */
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2); /* Added shadow for depth */
+            border: 3px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
         }
 
         .hover-card:hover .card-image {
             transform: scale(1.02);
-            border-color: rgba(255, 255, 255, 0.4); /* Enhanced border on hover */
+            border-color: rgba(255, 255, 255, 0.4);
             box-shadow: 0 6px 25px rgba(0, 0, 0, 0.3);
         }
 
@@ -320,9 +315,7 @@
             align-items: center;
             justify-content: center;
             cursor: pointer;
-            transition: background-color 0.8s cubic-bezier(0.25, 0.8, 0.25, 1), 
-                        border-color 0.8s cubic-bezier(0.25, 0.8, 0.25, 1),
-                        all 0.6s cubic-bezier(0.25, 0.8, 0.25, 1);
+            transition: all 0.6s cubic-bezier(0.25, 0.8, 0.25, 1);
             z-index: 10;
             overflow: hidden;
         }
@@ -340,12 +333,6 @@
             transform: scale(1.1);
         }
 
-        /* Button hover animation (separate from card hover) */
-        .card-button:hover {
-            background: #1f2937;
-            border: none;
-        }
-
         .arrow-icon {
             width: 24px;
             height: 24px;
@@ -357,7 +344,6 @@
             opacity: 1;
         }
 
-        /* Arrow animation only on button hover */
         .card-button:hover .arrow-icon {
             transform: rotate(60deg) translate(100px, -100px);
             opacity: 0;
@@ -367,7 +353,6 @@
             stroke: white;
         }
 
-        /* Additional hover effects */
         .hover-card::before {
             content: '';
             position: absolute;
@@ -495,68 +480,23 @@
             box-shadow: 0 12px 35px rgba(225, 131, 53, 0.5);
         }
 
-        /* Futuristic Scroll Animations */
-        .fade-in-up {
-            opacity: 0;
-            transform: translateY(60px);
-            transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+        /* Footer */
+        footer {
+            background: #333;
+            color: white;
+            text-align: center;
+            padding: 30px 20px;
         }
 
-        .fade-in-up.animate {
-            opacity: 1;
-            transform: translateY(0);
+        footer p {
+            margin-bottom: 10px;
         }
 
-        .fade-in-left {
-            opacity: 0;
-            transform: translateX(-60px);
-            transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+        footer p:last-child {
+            font-size: 12px;
+            opacity: 0.7;
+            margin-bottom: 0;
         }
-
-        .fade-in-left.animate {
-            opacity: 1;
-            transform: translateX(0);
-        }
-
-        .fade-in-right {
-            opacity: 0;
-            transform: translateX(60px);
-            transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-
-        .fade-in-right.animate {
-            opacity: 1;
-            transform: translateX(0);
-        }
-
-        .scale-in {
-            opacity: 0;
-            transform: scale(0.8);
-            transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-
-        .scale-in.animate {
-            opacity: 1;
-            transform: scale(1);
-        }
-
-        /* Staggered animations for project cards */
-        .hover-card {
-            opacity: 0;
-            transform: translateY(60px) scale(0.9);
-            transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-
-        .hover-card.animate {
-            opacity: 1;
-            transform: translateY(0) scale(1);
-        }
-
-        .hover-card.animate:nth-child(1) { transition-delay: 0.1s; }
-        .hover-card.animate:nth-child(2) { transition-delay: 0.2s; }
-        .hover-card.animate:nth-child(3) { transition-delay: 0.3s; }
-        .hover-card.animate:nth-child(4) { transition-delay: 0.4s; }
-        .hover-card.animate:nth-child(5) { transition-delay: 0.5s; }
 
         @media (max-width: 1024px) {
             .project-grid {
@@ -565,10 +505,6 @@
             
             .hero h1 {
                 font-size: 80px;
-            }
-            
-            .hero h2 {
-                font-size: 40px;
             }
         }
 
@@ -614,10 +550,6 @@
                 font-size: 60px;
             }
 
-            .hero h2 {
-                font-size: 30px;
-            }
-
             .project-grid {
                 grid-template-columns: 1fr;
                 margin-left: 60px;
@@ -637,7 +569,7 @@
             }
 
             .hover-card {
-                height: 450px; /* Adjusted for mobile */
+                height: 450px;
                 padding: 20px;
             }
 
@@ -650,14 +582,14 @@
             }
 
             .card-image {
-                height: 180px; /* Adjusted for mobile but still larger than before */
+                height: 180px;
             }
         }
     </style>
 </head>
 <body>
     <!-- Navigation -->
-    <nav class="navbar" id="navbar">
+    <nav class="navbar">
         <!-- Social Links -->
         <div class="social-links">
             <a href="https://www.linkedin.com/in/gigigiorbelidze/" target="_blank" class="social-btn" title="LinkedIn">
@@ -690,8 +622,8 @@
     </nav>
 
     <!-- Hero Section -->
-    <section class="hero fade-in-up" id="home">
-        <div class="hero-content fade-in-left">
+    <section class="hero" id="home">
+        <div class="hero-content">
             <h1>Hello</h1>
             
             <div class="hero-description">
@@ -702,14 +634,14 @@
             </div>
         </div>
         
-        <div class="hero-character fade-in-right">
-            <img src="koble-tavi.png" alt="Gigi Profile" class="character-img" />
+        <div class="hero-character">
+            <div class="character-placeholder">Gigi's Profile</div>
         </div>
     </section>
 
     <!-- Projects Section -->
     <section class="projects" id="projects">
-        <h2 class="fade-in-up">Featured Projects</h2>
+        <h2>Featured Projects</h2>
         
         <div class="project-grid">
             <div class="hover-card">
@@ -794,3 +726,88 @@
                         <h3 class="card-title">EcoTrack App</h3>
                         <p class="card-description">Environmental awareness app that helps users track their carbon footprint, find recycling centers, and participate in local sustainability initiatives.</p>
                     </div>
+                    
+                    <div>
+                        <img src="https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?w=400&h=200&fit=crop" alt="Sustainability app" class="card-image">
+                    </div>
+                </div>
+                
+                <div class="card-button">
+                    <svg class="arrow-icon" viewBox="0 0 24 24">
+                        <path d="M7 17L17 7M17 7H7M17 7V17"/>
+                    </svg>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact" id="contact">
+        <h2>Let's create magic<br>together.</h2>
+        
+        <form class="contact-form" id="contactForm">
+            <div class="form-row">
+                <div class="form-group">
+                    <input type="text" class="form-input" placeholder="Your Name" name="name" required>
+                </div>
+                <div class="form-group">
+                    <input type="email" class="form-input" placeholder="Email Address" name="email" required>
+                </div>
+            </div>
+            
+            <textarea class="form-textarea" placeholder="Tell me about your project idea! What are you looking to create?" name="message" required></textarea>
+            
+            <button type="submit" class="submit-btn">
+                <span>Send Message</span>
+                <span>→</span>
+            </button>
+        </form>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2025 Gigi Giorbelidze. All rights reserved.</p>
+        <p>Designed with ❤️ in Tbilisi</p>
+    </footer>
+
+    <script>
+        // Smooth scrolling navigation
+        document.querySelectorAll('.nav-btn').forEach(btn => {
+            btn.addEventListener('click', function(e) {
+                e.preventDefault();
+                const href = this.getAttribute('href');
+                const target = document.querySelector(href);
+                
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Smart navigation updates based on scroll position
+        window.addEventListener('scroll', function() {
+            const sections = [
+                { id: 'home', nav: 'Home' },
+                { id: 'projects', nav: 'Work' },
+                { id: 'contact', nav: 'Contact' }
+            ];
+            
+            let current = '';
+            
+            sections.forEach(section => {
+                const element = document.getElementById(section.id);
+                if (element) {
+                    const rect = element.getBoundingClientRect();
+                    if (rect.top <= 200 && rect.bottom >= 200) {
+                        current = section;
+                    }
+                }
+            });
+            
+            if (current) {
+                document.querySelectorAll('.nav-btn').forEach(btn => {
+                    btn.classList.remove('active');
+                    if (btn.textContent === current.nav) {
