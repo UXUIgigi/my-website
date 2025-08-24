@@ -1,239 +1,4 @@
-<!-- Contact Section -->
-    <section class="contact fade-in-up" id="contact">
-        <h2 class="scale-in">Let's create magic<br>together.</h2>
-        
-        <form class="contact-form fade-in-up" id="contactForm">
-            <div class="form-row">
-                <div class="form-group">
-                    <input type="text" class="form-input" placeholder="Your Name" name="name" required>
-                </div>
-                <div class="form-group">
-                    <input type="email" class="form-input" placeholder="Email Address" name="email" required>
-                </div>
-            </div>
-            
-            <textarea class="form-textarea" placeholder="Tell me about your project idea! What are you looking to create?" name="message" required></textarea>
-            
-            <button type="submit" class="submit-btn">
-                <span>Send Message</span>
-                <span>→</span>
-            </button>
-        </form>
-    </section>
-
-    <!-- Footer -->
-    <footer style="background: #333; color: white; text-align: center; padding: 30px 20px;">
-        <p style="margin-bottom: 10px;">&copy; 2025 Gigi Giorbelidze. All rights reserved.</p>
-        <p style="font-size: 12px; opacity: 0.7;">Designed with ❤️ in Tbilisi</p>
-    </footer>
-
-    <script>
-        // Intersection Observer for scroll animations
-        const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -50px 0px'
-        };
-
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('animate');
-                }
-            });
-        }, observerOptions);
-
-        // Observe all animation elements
-        document.addEventListener('DOMContentLoaded', function() {
-            // Add animation classes and observe
-            const animElements = document.querySelectorAll('.fade-in-up, .fade-in-left, .fade-in-right, .scale-in, .hover-card');
-            animElements.forEach(el => {
-                observer.observe(el);
-            });
-
-            // Trigger hero animations immediately
-            setTimeout(() => {
-                document.querySelector('.hero').classList.add('animate');
-                document.querySelector('.hero-content').classList.add('animate');
-                document.querySelector('.hero-character').classList.add('animate');
-            }, 300);
-        });
-
-        // Smooth scrolling navigation
-        document.querySelectorAll('.nav-btn').forEach(btn => {
-            btn.addEventListener('click', function(e) {
-                e.preventDefault();
-                const href = this.getAttribute('href');
-                const target = document.querySelector(href);
-                
-                if (target) {
-                    target.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
-                }
-            });
-        });
-
-        // Smart navigation updates based on scroll position
-        window.addEventListener('scroll', function() {
-            const sections = [
-                { id: 'home', nav: 'Home' },
-                { id: 'projects', nav: 'Work' },
-                { id: 'contact', nav: 'Contact' }
-            ];
-            
-            let current = '';
-            
-            sections.forEach(section => {
-                const element = document.getElementById(section.id);
-                if (element) {
-                    const rect = element.getBoundingClientRect();
-                    if (rect.top <= 200 && rect.bottom >= 200) {
-                        current = section;
-                    }
-                }
-            });
-            
-            if (current) {
-                document.querySelectorAll('.nav-btn').forEach(btn => {
-                    btn.classList.remove('active');
-                    if (btn.textContent === current.nav) {
-                        btn.classList.add('active');
-                    }
-                });
-            }
-        });
-
-        // Resume download functionality
-        document.querySelector('.resume-btn').addEventListener('click', function() {
-            // Create resume content as a data URL
-            const resumeContent = `GIGI GIORBELIDZE
-UX/UI Designer
-995 591979635 | gigigiorbelidzeuxui@gmail.com | linkedin.com/gigigiorbelidze | behance.net/Ggiorbelidze
-
-SUMMARY
-I bring over 4 years of experience in UX/UI design, including freelance projects and agency work. Since 2023, I've been designing at a White-Label Agency, contributing to projects across the US, Australia, and the UK. Projects like GITA and NEW Horizons, along with completing the Google UX Design Certificate, have sharpened my skills in Figma, team collaboration, and working closely with developers. I thrive in creative, collaborative environments, love turning ideas into real solutions, and am always eager to grow and take on new challenges.
-
-PROFESSIONAL EXPERIENCE
-
-UX/UI Web/Product Designer
-White Label Agency | 2023 – Present | Boston, Massachusetts
-• Designing intuitive and visually compelling digital experiences for clients primarily in the US and worldwide.
-• Collaborate with various businesses to create user-friendly websites and applications that align with their brand identity.
-• Ensure internal post designs are engaging and effective. Conduct user research, wireframing, prototyping, and refining UX/UI elements using Figma and Adobe XD to optimise user engagement and conversion
-
-UX/UI Designer
-Upwork | 2021 – 2023
-• Collaborated with various clients to create visually appealing and user-friendly interfaces for websites and applications.
-• Conducted user research and implemented user feedback to enhance the overall user experience.
-• Designed wireframes, prototypes, and mockups using tools like Adobe XD and Figma.
-
-Graphic Designer
-VG Auto Export | 2021 – 2022 | Tbilisi, Georgia
-• Created engaging posters, flyers, and banners to promote the company's products and services.
-• Collaborated with the marketing team to develop branding materials and maintain visual consistency across different platforms.
-
-PROJECTS
-• Foundations of User Experience (UX) Design | 12/2024 – 01/2025
-• Start the UX Design Process: Empathize, Define, and Ideate | 01/2025
-• Interaction Design Foundation /User Experience | 06/2022 – 07/2022
-• GITA & NEW Horizons / UX&UI Design Jumpstart | 03/2022 – 05/2022
-
-TECHNICAL SKILLS
-• End-to-End Product Design • Branding
-• User-Centered Design • Mobile Design
-• Responsive Web Design • Visual Design
-• Design Systems • Prototyping
-• Interaction Design • User Flows
-• Information Architecture • Identity
-• Visual Strategy
-
-EDUCATION
-Bachelor of Arts in Digital Media
-Tbilisi State Academy of Art | 10/2021 – 08/2023 | Tbilisi, Georgia
-
-Bachelor of Arts in Graphic Design
-Tbilisi State Academy of Art | 10/2018 – 07/2021 | State College, PA
-
-LANGUAGES
-• Georgian - Native
-• English - B2 full professional
-• German - A2
-• Portuguese - A1 currently studying`;
-
-            // Create and trigger download
-            const blob = new Blob([resumeContent], { type: 'text/plain' });
-            const url = window.URL.createObjectURL(blob);
-            const link = document.createElement('a');
-            link.href = url;
-            link.download = 'Gigi_Giorbelidze_Resume.txt';
-            
-            // Add download animation
-            this.style.background = 'linear-gradient(135deg, #22c55e 0%, #16a34a 100%)';
-            this.textContent = 'Downloading...';
-            this.style.transform = 'scale(0.95)';
-            
-            setTimeout(() => {
-                link.click();
-                this.textContent = 'Downloaded!';
-                this.style.transform = 'scale(1.05)';
-                
-                setTimeout(() => {
-                    this.textContent = 'Resume';
-                    this.style.background = 'rgba(255, 255, 255, 0.9)';
-                    this.style.transform = 'scale(1)';
-                }, 1500);
-            }, 800);
-            
-            // Clean up
-            setTimeout(() => {
-                window.URL.revokeObjectURL(url);
-            }, 2000);
-        });
-
-        // Form submission with animation
-        document.getElementById('contactForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-            
-            const submitBtn = this.querySelector('.submit-btn');
-            const originalText = submitBtn.querySelector('span').textContent;
-            
-            // Loading state with futuristic effect
-            submitBtn.querySelector('span').textContent = 'Transmitting...';
-            submitBtn.style.background = 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)';
-            submitBtn.disabled = true;
-            
-            // Add pulse effect
-            submitBtn.style.animation = 'pulse 1s infinite';
-            
-            // Simulate sending
-            setTimeout(() => {
-                submitBtn.querySelector('span').textContent = 'Message Received!';
-                submitBtn.style.background = 'linear-gradient(135deg, #11998e 0%, #38ef7d 100%)';
-                submitBtn.style.animation = 'none';
-                
-                setTimeout(() => {
-                    this.reset();
-                    submitBtn.querySelector('span').textContent = originalText;
-                    submitBtn.style.background = 'linear-gradient(135deg, #E18335 0%, #d16f2a 100%)';
-                    submitBtn.disabled = false;
-                }, 2000);
-            }, 1500);
-        });
-
-        // Add pulse animation for submit button
-        const style = document.createElement('style');
-        style.textContent = `
-            @keyframes pulse {
-                0% { transform: scale(1); }
-                50% { transform: scale(1.05); }
-                100% { transform: scale(1); }
-            }
-        `;
-        document.head.appendChild(style);
-    </script>
-</body>
-</html><!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -477,15 +242,15 @@ LANGUAGES
             margin-bottom: 60px;
         }
 
-        /* New Hover Card Styles */
+        /* Updated Hover Card Styles with larger images and border */
         .hover-card {
             position: relative;
             width: 100%;
-            height: 450px;
+            height: 500px; /* Increased height to accommodate larger image */
             background: #6b7280;
             border: none;
             border-radius: 20px;
-            padding: 30px;
+            padding: 25px; /* Reduced padding slightly */
             cursor: pointer;
             overflow: visible;
             transition: all 0.6s cubic-bezier(0.25, 0.8, 0.25, 1);
@@ -511,7 +276,7 @@ LANGUAGES
         .card-title {
             font-size: 24px;
             font-weight: 700;
-            margin-bottom: 15px;
+            margin-bottom: 12px;
             line-height: 1.2;
             text-transform: uppercase;
         }
@@ -522,19 +287,24 @@ LANGUAGES
             opacity: 0.9;
             margin-bottom: 20px;
             text-transform: none;
+            flex-shrink: 0; /* Prevent text from shrinking */
         }
 
         .card-image {
             width: 100%;
-            height: 160px;
+            height: 220px; /* Increased from 160px to 220px */
             border-radius: 12px;
             object-fit: cover;
             margin-top: auto;
             transition: transform 0.4s ease;
+            border: 3px solid rgba(255, 255, 255, 0.2); /* Added subtle border */
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2); /* Added shadow for depth */
         }
 
         .hover-card:hover .card-image {
             transform: scale(1.02);
+            border-color: rgba(255, 255, 255, 0.4); /* Enhanced border on hover */
+            box-shadow: 0 6px 25px rgba(0, 0, 0, 0.3);
         }
 
         .card-button {
@@ -867,8 +637,8 @@ LANGUAGES
             }
 
             .hover-card {
-                height: 400px;
-                padding: 25px;
+                height: 450px; /* Adjusted for mobile */
+                padding: 20px;
             }
 
             .card-title {
@@ -880,7 +650,7 @@ LANGUAGES
             }
 
             .card-image {
-                height: 140px;
+                height: 180px; /* Adjusted for mobile but still larger than before */
             }
         }
     </style>
@@ -1024,19 +794,3 @@ LANGUAGES
                         <h3 class="card-title">EcoTrack App</h3>
                         <p class="card-description">Environmental awareness app that helps users track their carbon footprint, find recycling centers, and participate in local sustainability initiatives.</p>
                     </div>
-                    
-                    <div>
-                        <img src="https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?w=400&h=200&fit=crop" alt="Sustainability app" class="card-image">
-                    </div>
-                </div>
-                
-                <div class="card-button">
-                    <svg class="arrow-icon" viewBox="0 0 24 24">
-                        <path d="M7 17L17 7M17 7H7M17 7V17"/>
-                    </svg>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!--
