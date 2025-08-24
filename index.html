@@ -1,4 +1,239 @@
-<!DOCTYPE html>
+<!-- Contact Section -->
+    <section class="contact fade-in-up" id="contact">
+        <h2 class="scale-in">Let's create magic<br>together.</h2>
+        
+        <form class="contact-form fade-in-up" id="contactForm">
+            <div class="form-row">
+                <div class="form-group">
+                    <input type="text" class="form-input" placeholder="Your Name" name="name" required>
+                </div>
+                <div class="form-group">
+                    <input type="email" class="form-input" placeholder="Email Address" name="email" required>
+                </div>
+            </div>
+            
+            <textarea class="form-textarea" placeholder="Tell me about your project idea! What are you looking to create?" name="message" required></textarea>
+            
+            <button type="submit" class="submit-btn">
+                <span>Send Message</span>
+                <span>→</span>
+            </button>
+        </form>
+    </section>
+
+    <!-- Footer -->
+    <footer style="background: #333; color: white; text-align: center; padding: 30px 20px;">
+        <p style="margin-bottom: 10px;">&copy; 2025 Gigi Giorbelidze. All rights reserved.</p>
+        <p style="font-size: 12px; opacity: 0.7;">Designed with ❤️ in Tbilisi</p>
+    </footer>
+
+    <script>
+        // Intersection Observer for scroll animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('animate');
+                }
+            });
+        }, observerOptions);
+
+        // Observe all animation elements
+        document.addEventListener('DOMContentLoaded', function() {
+            // Add animation classes and observe
+            const animElements = document.querySelectorAll('.fade-in-up, .fade-in-left, .fade-in-right, .scale-in, .hover-card');
+            animElements.forEach(el => {
+                observer.observe(el);
+            });
+
+            // Trigger hero animations immediately
+            setTimeout(() => {
+                document.querySelector('.hero').classList.add('animate');
+                document.querySelector('.hero-content').classList.add('animate');
+                document.querySelector('.hero-character').classList.add('animate');
+            }, 300);
+        });
+
+        // Smooth scrolling navigation
+        document.querySelectorAll('.nav-btn').forEach(btn => {
+            btn.addEventListener('click', function(e) {
+                e.preventDefault();
+                const href = this.getAttribute('href');
+                const target = document.querySelector(href);
+                
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Smart navigation updates based on scroll position
+        window.addEventListener('scroll', function() {
+            const sections = [
+                { id: 'home', nav: 'Home' },
+                { id: 'projects', nav: 'Work' },
+                { id: 'contact', nav: 'Contact' }
+            ];
+            
+            let current = '';
+            
+            sections.forEach(section => {
+                const element = document.getElementById(section.id);
+                if (element) {
+                    const rect = element.getBoundingClientRect();
+                    if (rect.top <= 200 && rect.bottom >= 200) {
+                        current = section;
+                    }
+                }
+            });
+            
+            if (current) {
+                document.querySelectorAll('.nav-btn').forEach(btn => {
+                    btn.classList.remove('active');
+                    if (btn.textContent === current.nav) {
+                        btn.classList.add('active');
+                    }
+                });
+            }
+        });
+
+        // Resume download functionality
+        document.querySelector('.resume-btn').addEventListener('click', function() {
+            // Create resume content as a data URL
+            const resumeContent = `GIGI GIORBELIDZE
+UX/UI Designer
+995 591979635 | gigigiorbelidzeuxui@gmail.com | linkedin.com/gigigiorbelidze | behance.net/Ggiorbelidze
+
+SUMMARY
+I bring over 4 years of experience in UX/UI design, including freelance projects and agency work. Since 2023, I've been designing at a White-Label Agency, contributing to projects across the US, Australia, and the UK. Projects like GITA and NEW Horizons, along with completing the Google UX Design Certificate, have sharpened my skills in Figma, team collaboration, and working closely with developers. I thrive in creative, collaborative environments, love turning ideas into real solutions, and am always eager to grow and take on new challenges.
+
+PROFESSIONAL EXPERIENCE
+
+UX/UI Web/Product Designer
+White Label Agency | 2023 – Present | Boston, Massachusetts
+• Designing intuitive and visually compelling digital experiences for clients primarily in the US and worldwide.
+• Collaborate with various businesses to create user-friendly websites and applications that align with their brand identity.
+• Ensure internal post designs are engaging and effective. Conduct user research, wireframing, prototyping, and refining UX/UI elements using Figma and Adobe XD to optimise user engagement and conversion
+
+UX/UI Designer
+Upwork | 2021 – 2023
+• Collaborated with various clients to create visually appealing and user-friendly interfaces for websites and applications.
+• Conducted user research and implemented user feedback to enhance the overall user experience.
+• Designed wireframes, prototypes, and mockups using tools like Adobe XD and Figma.
+
+Graphic Designer
+VG Auto Export | 2021 – 2022 | Tbilisi, Georgia
+• Created engaging posters, flyers, and banners to promote the company's products and services.
+• Collaborated with the marketing team to develop branding materials and maintain visual consistency across different platforms.
+
+PROJECTS
+• Foundations of User Experience (UX) Design | 12/2024 – 01/2025
+• Start the UX Design Process: Empathize, Define, and Ideate | 01/2025
+• Interaction Design Foundation /User Experience | 06/2022 – 07/2022
+• GITA & NEW Horizons / UX&UI Design Jumpstart | 03/2022 – 05/2022
+
+TECHNICAL SKILLS
+• End-to-End Product Design • Branding
+• User-Centered Design • Mobile Design
+• Responsive Web Design • Visual Design
+• Design Systems • Prototyping
+• Interaction Design • User Flows
+• Information Architecture • Identity
+• Visual Strategy
+
+EDUCATION
+Bachelor of Arts in Digital Media
+Tbilisi State Academy of Art | 10/2021 – 08/2023 | Tbilisi, Georgia
+
+Bachelor of Arts in Graphic Design
+Tbilisi State Academy of Art | 10/2018 – 07/2021 | State College, PA
+
+LANGUAGES
+• Georgian - Native
+• English - B2 full professional
+• German - A2
+• Portuguese - A1 currently studying`;
+
+            // Create and trigger download
+            const blob = new Blob([resumeContent], { type: 'text/plain' });
+            const url = window.URL.createObjectURL(blob);
+            const link = document.createElement('a');
+            link.href = url;
+            link.download = 'Gigi_Giorbelidze_Resume.txt';
+            
+            // Add download animation
+            this.style.background = 'linear-gradient(135deg, #22c55e 0%, #16a34a 100%)';
+            this.textContent = 'Downloading...';
+            this.style.transform = 'scale(0.95)';
+            
+            setTimeout(() => {
+                link.click();
+                this.textContent = 'Downloaded!';
+                this.style.transform = 'scale(1.05)';
+                
+                setTimeout(() => {
+                    this.textContent = 'Resume';
+                    this.style.background = 'rgba(255, 255, 255, 0.9)';
+                    this.style.transform = 'scale(1)';
+                }, 1500);
+            }, 800);
+            
+            // Clean up
+            setTimeout(() => {
+                window.URL.revokeObjectURL(url);
+            }, 2000);
+        });
+
+        // Form submission with animation
+        document.getElementById('contactForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const submitBtn = this.querySelector('.submit-btn');
+            const originalText = submitBtn.querySelector('span').textContent;
+            
+            // Loading state with futuristic effect
+            submitBtn.querySelector('span').textContent = 'Transmitting...';
+            submitBtn.style.background = 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)';
+            submitBtn.disabled = true;
+            
+            // Add pulse effect
+            submitBtn.style.animation = 'pulse 1s infinite';
+            
+            // Simulate sending
+            setTimeout(() => {
+                submitBtn.querySelector('span').textContent = 'Message Received!';
+                submitBtn.style.background = 'linear-gradient(135deg, #11998e 0%, #38ef7d 100%)';
+                submitBtn.style.animation = 'none';
+                
+                setTimeout(() => {
+                    this.reset();
+                    submitBtn.querySelector('span').textContent = originalText;
+                    submitBtn.style.background = 'linear-gradient(135deg, #E18335 0%, #d16f2a 100%)';
+                    submitBtn.disabled = false;
+                }, 2000);
+            }, 1500);
+        });
+
+        // Add pulse animation for submit button
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes pulse {
+                0% { transform: scale(1); }
+                50% { transform: scale(1.05); }
+                100% { transform: scale(1); }
+            }
+        `;
+        document.head.appendChild(style);
+    </script>
+</body>
+</html><!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -242,115 +477,141 @@
             margin-bottom: 60px;
         }
 
-        .project-card {
-            background: white;
-            border-radius: 20px;
-            padding: 0;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        /* New Hover Card Styles */
+        .hover-card {
             position: relative;
-            overflow: hidden;
+            width: 100%;
+            height: 450px;
+            background: #6b7280;
+            border: none;
+            border-radius: 20px;
+            padding: 30px;
             cursor: pointer;
+            overflow: visible;
+            transition: all 0.6s cubic-bezier(0.25, 0.8, 0.25, 1);
         }
 
-        .project-card:hover {
-            transform: translateY(-10px) scale(1.03);
-            box-shadow: 0 25px 50px rgba(0,0,0,0.2);
+        .hover-card:hover {
+            background: #f97316;
+            border: none;
+            border-radius: 20px 20px 20px 100px;
+            transform: translateY(-5px);
         }
 
-        .project-card:hover .project-overlay {
+        .card-content {
+            color: white;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            position: relative;
+            z-index: 2;
+        }
+
+        .card-title {
+            font-size: 24px;
+            font-weight: 700;
+            margin-bottom: 15px;
+            line-height: 1.2;
+            text-transform: uppercase;
+        }
+
+        .card-description {
+            font-size: 14px;
+            line-height: 1.5;
+            opacity: 0.9;
+            margin-bottom: 20px;
+            text-transform: none;
+        }
+
+        .card-image {
+            width: 100%;
+            height: 160px;
+            border-radius: 12px;
+            object-fit: cover;
+            margin-top: auto;
+            transition: transform 0.4s ease;
+        }
+
+        .hover-card:hover .card-image {
+            transform: scale(1.02);
+        }
+
+        .card-button {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            width: 45px;
+            height: 45px;
+            border: none;
+            border-radius: 50%;
+            background: #f97316;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: background-color 0.8s cubic-bezier(0.25, 0.8, 0.25, 1), 
+                        border-color 0.8s cubic-bezier(0.25, 0.8, 0.25, 1),
+                        all 0.6s cubic-bezier(0.25, 0.8, 0.25, 1);
+            z-index: 10;
+            overflow: hidden;
+        }
+
+        .hover-card:hover .card-button {
+            top: auto;
+            bottom: -5px;
+            right: auto;
+            left: -5px;
+            width: 58px;
+            height: 58px;
+            background: #1f2937;
+            border: 5px solid white;
+            border-radius: 50%;
+            transform: scale(1.1);
+        }
+
+        /* Button hover animation (separate from card hover) */
+        .card-button:hover {
+            background: #1f2937;
+            border: none;
+        }
+
+        .arrow-icon {
+            width: 24px;
+            height: 24px;
+            stroke: white;
+            stroke-width: 2.5;
+            fill: none;
+            transform: rotate(15deg);
+            transition: all 1.5s cubic-bezier(0.25, 0.8, 0.25, 1);
             opacity: 1;
         }
 
-        .project-overlay {
+        /* Arrow animation only on button hover */
+        .card-button:hover .arrow-icon {
+            transform: rotate(60deg) translate(100px, -100px);
+            opacity: 0;
+        }
+
+        .hover-card:hover .arrow-icon {
+            stroke: white;
+        }
+
+        /* Additional hover effects */
+        .hover-card::before {
+            content: '';
             position: absolute;
             top: 0;
             left: 0;
             right: 0;
             bottom: 0;
-            background: linear-gradient(135deg, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.95) 100%);
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
+            background: linear-gradient(45deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0.05) 100%);
             opacity: 0;
-            transition: all 0.4s ease;
-            padding: 30px;
-            color: white;
-            text-align: center;
+            transition: opacity 0.3s ease;
         }
 
-        .project-overlay h3 {
-            font-size: 24px;
-            font-weight: 600;
-            margin-bottom: 18px;
-            color: #E18335;
-            line-height: 1.2;
-        }
-
-        .project-overlay p {
-            font-size: 15px;
-            font-weight: 500;
-            color: #ffffff;
-            line-height: 1.4;
-            margin-bottom: 30px;
-        }
-
-        .see-more-btn {
-            position: absolute;
-            bottom: 20px;
-            right: 20px;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            background: linear-gradient(135deg, #E18335 0%, #d16f2a 100%);
-            color: white;
-            padding: 10px 16px;
-            border-radius: 30px;
-            font-size: 14px;
-            font-weight: 600;
-            text-decoration: none;
-            transition: all 0.4s ease;
-        }
-
-        .see-more-btn:hover {
-            transform: scale(1.05);
-        }
-
-        .project-image {
-            width: 100%;
-            height: 300px;
-            border-radius: 20px;
-            background-size: cover;
-            background-position: center;
-            position: relative;
-            transition: all 0.4s ease;
-        }
-
-        .medical-app { 
-            background-image: url('https://i.imgur.com/9Q8X9YK.png');
-            background-size: cover;
-            background-position: center;
-        }
-        
-        .character-design { 
-            background: linear-gradient(135deg, #2D5A3D 0%, #4A7C5B 100%);
-            background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300"><circle cx="200" cy="120" r="40" fill="%23FF8B94"/><circle cx="180" cy="110" r="3" fill="%23333"/><circle cx="220" cy="110" r="3" fill="%23333"/></svg>');
-        }
-        
-        .portfolio-showcase { 
-            background: linear-gradient(135deg, #2C3E50 0%, #34495E 100%);
-            background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300"><rect width="300" height="200" x="50" y="50" rx="10" fill="%23fff"/><circle cx="80" cy="70" r="5" fill="%23E74C3C"/></svg>');
-        }
-        
-        .echool-app { 
-            background: linear-gradient(135deg, #E8F5E8 0%, #C8E6C9 100%);
-            background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300"><rect width="60" height="80" x="100" y="100" rx="5" fill="%234CAF50"/><circle cx="130" cy="80" r="15" fill="%23FFC107"/></svg>');
-        }
-        
-        .recycle-app { 
-            background: linear-gradient(135deg, #E8F5E8 0%, #A5D6A7 100%);
-            background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300"><path d="M200,80 L180,120 L220,120 Z" fill="%234CAF50"/><circle cx="200" cy="180" r="8" fill="%234CAF50"/></svg>');
+        .hover-card:hover::before {
+            opacity: 1;
         }
 
         /* Contact Section */
@@ -510,22 +771,23 @@
         }
 
         /* Staggered animations for project cards */
-        .project-card {
+        .hover-card {
             opacity: 0;
             transform: translateY(60px) scale(0.9);
             transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
-        .project-card.animate {
+        .hover-card.animate {
             opacity: 1;
             transform: translateY(0) scale(1);
         }
 
-        .project-card.animate:nth-child(1) { transition-delay: 0.1s; }
-        .project-card.animate:nth-child(2) { transition-delay: 0.2s; }
-        .project-card.animate:nth-child(3) { transition-delay: 0.3s; }
-        .project-card.animate:nth-child(4) { transition-delay: 0.4s; }
-        .project-card.animate:nth-child(5) { transition-delay: 0.5s; }
+        .hover-card.animate:nth-child(1) { transition-delay: 0.1s; }
+        .hover-card.animate:nth-child(2) { transition-delay: 0.2s; }
+        .hover-card.animate:nth-child(3) { transition-delay: 0.3s; }
+        .hover-card.animate:nth-child(4) { transition-delay: 0.4s; }
+        .hover-card.animate:nth-child(5) { transition-delay: 0.5s; }
+
         @media (max-width: 1024px) {
             .project-grid {
                 grid-template-columns: repeat(2, 1fr);
@@ -542,14 +804,35 @@
 
         @media (max-width: 768px) {
             .navbar {
+                padding: 15px 20px;
+                justify-content: center;
+            }
+
+            .social-links {
+                position: fixed;
+                left: 15px;
+                top: 50%;
+                transform: translateY(-50%);
                 flex-direction: column;
                 gap: 15px;
+                z-index: 1001;
+            }
+
+            .social-btn {
+                width: 40px;
+                height: 40px;
+                font-size: 16px;
+            }
+
+            .resume-container {
+                display: none;
             }
 
             .hero {
                 flex-direction: column;
                 text-align: center;
                 padding: 140px 20px 60px;
+                margin-left: 60px;
             }
 
             .hero-content {
@@ -567,6 +850,12 @@
 
             .project-grid {
                 grid-template-columns: 1fr;
+                margin-left: 60px;
+                padding: 0 20px;
+            }
+
+            .projects {
+                padding: 80px 20px;
             }
 
             .contact h2 {
@@ -575,6 +864,23 @@
 
             .form-row {
                 flex-direction: column;
+            }
+
+            .hover-card {
+                height: 400px;
+                padding: 25px;
+            }
+
+            .card-title {
+                font-size: 20px;
+            }
+
+            .card-description {
+                font-size: 13px;
+            }
+
+            .card-image {
+                height: 140px;
             }
         }
     </style>
@@ -592,11 +898,6 @@
             <a href="https://www.behance.net/Ggiorbelidze" target="_blank" class="social-btn" title="Behance">
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
                     <path d="M22 7h-7v-2h7v2zm1.726 10c-.442 1.297-2.029 3-5.101 3-3.074 0-5.564-1.729-5.564-5.675 0-3.91 2.325-5.92 5.466-5.92 3.082 0 4.964 1.782 5.375 4.426.078.506.109 1.188.095 2.14h-8.027c.13 3.211 3.483 3.312 4.588 2.029h3.168zm-7.686-4h4.965c-.105-1.547-1.136-2.219-2.477-2.219-1.466 0-2.277.768-2.488 2.219zm-9.574 6.988h-6.466v-14.967h6.953c5.476.081 5.58 5.444 2.72 6.906 3.461 1.26 3.577 8.061-3.207 8.061zm-3.466-8.988h3.584c2.508 0 2.906-3-.312-3h-3.272v3zm3.391 3h-3.391v3.016h3.341c3.055 0 2.868-3.016.05-3.016z"/>
-                </svg>
-            </a>
-            <a href="mailto:gigigiorbelidzeuxui@gmail.com" class="social-btn" title="Email">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
-                    <path d="M24 5.457v13.909c0 .904-.732 1.636-1.636 1.636h-3.819V11.73L12 16.64l-6.545-4.91v9.273H1.636C.732 21.002 0 20.27 0 19.366V5.457c0-.887.711-1.592 1.636-1.592h3.819l6.545 4.91 6.545-4.91h3.819c.925 0 1.636.705 1.636 1.592z"/>
                 </svg>
             </a>
         </div>
@@ -641,197 +942,101 @@
         <h2 class="fade-in-up">Featured Projects</h2>
         
         <div class="project-grid">
-            <div class="project-card">
-                <div class="project-image medical-app"></div>
-                <div class="project-overlay">
-                    <h3>MediCare App Design</h3>
-                    <p>A comprehensive medical app interface designed to bridge the gap between patients and healthcare providers. Features include appointment scheduling, medication tracking, and telemedicine consultations.</p>
-                    <a href="#" class="see-more-btn">Discover More →</a>
+            <div class="hover-card">
+                <div class="card-content">
+                    <div>
+                        <h3 class="card-title">Medical App</h3>
+                        <p class="card-description">This medical app concept, designed in Figma, focuses on creating a clean and intuitive user experience for patients and professionals. The interface combines modern visuals with accessible navigation.</p>
+                    </div>
+                    
+                    <div>
+                        <img src="https://images.unsplash.com/photo-1576091160399-112ba8d25d1f?w=400&h=200&fit=crop" alt="Medical app interface" class="card-image">
+                    </div>
+                </div>
+                
+                <div class="card-button">
+                    <svg class="arrow-icon" viewBox="0 0 24 24">
+                        <path d="M7 17L17 7M17 7H7M17 7V17"/>
+                    </svg>
                 </div>
             </div>
-            
-            <div class="project-card">
-                <div class="project-image character-design"></div>
-                <div class="project-overlay">
-                    <h3>Fantasy Game Universe</h3>
-                    <p>Complete character design system and mobile game interface for a fantasy RPG. Includes character progression, inventory management, and battle systems.</p>
-                    <a href="#" class="see-more-btn">Discover More →</a>
+
+            <div class="hover-card">
+                <div class="card-content">
+                    <div>
+                        <h3 class="card-title">Fantasy Game</h3>
+                        <p class="card-description">Complete character design system and mobile game interface for a fantasy RPG. Includes character progression, inventory management, and immersive battle systems.</p>
+                    </div>
+                    
+                    <div>
+                        <img src="https://images.unsplash.com/photo-1511512578047-dfb367046420?w=400&h=200&fit=crop" alt="Game character design" class="card-image">
+                    </div>
+                </div>
+                
+                <div class="card-button">
+                    <svg class="arrow-icon" viewBox="0 0 24 24">
+                        <path d="M7 17L17 7M17 7H7M17 7V17"/>
+                    </svg>
                 </div>
             </div>
-            
-            <div class="project-card">
-                <div class="project-image portfolio-showcase"></div>
-                <div class="project-overlay">
-                    <h3>Creative Portfolio Platform</h3>
-                    <p>A modern web platform designed for creative professionals to showcase their work. Features responsive galleries, project filtering, and client testimonials.</p>
-                    <a href="#" class="see-more-btn">Discover More →</a>
+
+            <div class="hover-card">
+                <div class="card-content">
+                    <div>
+                        <h3 class="card-title">Portfolio Platform</h3>
+                        <p class="card-description">A modern web platform designed for creative professionals to showcase their work. Features responsive galleries, project filtering, and client testimonials.</p>
+                    </div>
+                    
+                    <div>
+                        <img src="https://images.unsplash.com/photo-1467232004584-a241de8bcf5d?w=400&h=200&fit=crop" alt="Portfolio platform" class="card-image">
+                    </div>
+                </div>
+                
+                <div class="card-button">
+                    <svg class="arrow-icon" viewBox="0 0 24 24">
+                        <path d="M7 17L17 7M17 7H7M17 7V17"/>
+                    </svg>
                 </div>
             </div>
-            
-            <div class="project-card">
-                <div class="project-image echool-app"></div>
-                <div class="project-overlay">
-                    <h3>ESchool Learning Platform</h3>
-                    <p>Educational technology solution designed to enhance remote learning experiences. Features interactive lessons, progress tracking, and gamified learning elements.</p>
-                    <a href="#" class="see-more-btn">Discover More →</a>
+
+            <div class="hover-card">
+                <div class="card-content">
+                    <div>
+                        <h3 class="card-title">ESchool Platform</h3>
+                        <p class="card-description">Educational technology solution designed to enhance remote learning experiences. Features interactive lessons, progress tracking, and gamified learning elements.</p>
+                    </div>
+                    
+                    <div>
+                        <img src="https://images.unsplash.com/photo-1503676260728-1c00da094a0b?w=400&h=200&fit=crop" alt="E-learning platform" class="card-image">
+                    </div>
+                </div>
+                
+                <div class="card-button">
+                    <svg class="arrow-icon" viewBox="0 0 24 24">
+                        <path d="M7 17L17 7M17 7H7M17 7V17"/>
+                    </svg>
                 </div>
             </div>
-            
-            <div class="project-card">
-                <div class="project-image recycle-app"></div>
-                <div class="project-overlay">
-                    <h3>EcoTrack Sustainability App</h3>
-                    <p>Environmental awareness app that helps users track their carbon footprint, find recycling centers, and participate in local sustainability initiatives.</p>
-                    <a href="#" class="see-more-btn">Discover More →</a>
+
+            <div class="hover-card">
+                <div class="card-content">
+                    <div>
+                        <h3 class="card-title">EcoTrack App</h3>
+                        <p class="card-description">Environmental awareness app that helps users track their carbon footprint, find recycling centers, and participate in local sustainability initiatives.</p>
+                    </div>
+                    
+                    <div>
+                        <img src="https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?w=400&h=200&fit=crop" alt="Sustainability app" class="card-image">
+                    </div>
+                </div>
+                
+                <div class="card-button">
+                    <svg class="arrow-icon" viewBox="0 0 24 24">
+                        <path d="M7 17L17 7M17 7H7M17 7V17"/>
+                    </svg>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Contact Section -->
-    <section class="contact fade-in-up" id="contact">
-        <h2 class="scale-in">Let's create magic<br>together.</h2>
-        
-        <form class="contact-form fade-in-up" id="contactForm">
-            <div class="form-row">
-                <div class="form-group">
-                    <input type="text" class="form-input" placeholder="Your Name" name="name" required>
-                </div>
-                <div class="form-group">
-                    <input type="email" class="form-input" placeholder="Email Address" name="email" required>
-                </div>
-            </div>
-            
-            <textarea class="form-textarea" placeholder="Tell me about your project idea! What are you looking to create?" name="message" required></textarea>
-            
-            <button type="submit" class="submit-btn">
-                <span>Send Message</span>
-                <span>→</span>
-            </button>
-        </form>
-    </section>
-
-    <!-- Footer -->
-    <footer style="background: #333; color: white; text-align: center; padding: 30px 20px;">
-        <p style="margin-bottom: 10px;">&copy; 2025 Gigi Giorbelidze. All rights reserved.</p>
-        <p style="font-size: 12px; opacity: 0.7;">Designed with ❤️ in Tbilisi</p>
-    </footer>
-
-    <script>
-        // Intersection Observer for scroll animations
-        const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -50px 0px'
-        };
-
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('animate');
-                }
-            });
-        }, observerOptions);
-
-        // Observe all animation elements
-        document.addEventListener('DOMContentLoaded', function() {
-            // Add animation classes and observe
-            const animElements = document.querySelectorAll('.fade-in-up, .fade-in-left, .fade-in-right, .scale-in, .project-card');
-            animElements.forEach(el => {
-                observer.observe(el);
-            });
-
-            // Trigger hero animations immediately
-            setTimeout(() => {
-                document.querySelector('.hero').classList.add('animate');
-                document.querySelector('.hero-content').classList.add('animate');
-                document.querySelector('.hero-character').classList.add('animate');
-            }, 300);
-        });
-
-        // Smooth scrolling navigation
-        document.querySelectorAll('.nav-btn').forEach(btn => {
-            btn.addEventListener('click', function(e) {
-                e.preventDefault();
-                const href = this.getAttribute('href');
-                const target = document.querySelector(href);
-                
-                if (target) {
-                    target.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
-                }
-            });
-        });
-
-        // Smart navigation updates based on scroll position
-        window.addEventListener('scroll', function() {
-            const sections = [
-                { id: 'home', nav: 'Home' },
-                { id: 'projects', nav: 'Work' },
-                { id: 'contact', nav: 'Contact' }
-            ];
-            
-            let current = '';
-            
-            sections.forEach(section => {
-                const element = document.getElementById(section.id);
-                if (element) {
-                    const rect = element.getBoundingClientRect();
-                    if (rect.top <= 200 && rect.bottom >= 200) {
-                        current = section;
-                    }
-                }
-            });
-            
-            if (current) {
-                document.querySelectorAll('.nav-btn').forEach(btn => {
-                    btn.classList.remove('active');
-                    if (btn.textContent === current.nav) {
-                        btn.classList.add('active');
-                    }
-                });
-            }
-        });
-
-        // Form submission with animation
-        document.getElementById('contactForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-            
-            const submitBtn = this.querySelector('.submit-btn');
-            const originalText = submitBtn.querySelector('span').textContent;
-            
-            // Loading state with futuristic effect
-            submitBtn.querySelector('span').textContent = 'Transmitting...';
-            submitBtn.style.background = 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)';
-            submitBtn.disabled = true;
-            
-            // Add pulse effect
-            submitBtn.style.animation = 'pulse 1s infinite';
-            
-            // Simulate sending
-            setTimeout(() => {
-                submitBtn.querySelector('span').textContent = 'Message Received!';
-                submitBtn.style.background = 'linear-gradient(135deg, #11998e 0%, #38ef7d 100%)';
-                submitBtn.style.animation = 'none';
-                
-                setTimeout(() => {
-                    this.reset();
-                    submitBtn.querySelector('span').textContent = originalText;
-                    submitBtn.style.background = 'linear-gradient(135deg, #E18335 0%, #d16f2a 100%)';
-                    submitBtn.disabled = false;
-                }, 2000);
-            }, 1500);
-        });
-
-        // Add pulse animation for submit button
-        const style = document.createElement('style');
-        style.textContent = `
-            @keyframes pulse {
-                0% { transform: scale(1); }
-                50% { transform: scale(1.05); }
-                100% { transform: scale(1); }
-            }
-        `;
-        document.head.appendChild(style);
-    </script>
+    <!--
