@@ -651,7 +651,7 @@
                 <div class="card-content">
                     <div>
                         <h3 class="card-title">Medical App</h3>
-                        <p class="card-description">This medical app concept, designed in Figma, focuses on creating a clean and intuitive user experience for patients and professionals. The interface combines modern visuals with accessible navigation.</p>
+                        <p class="card-description">This medical app concept, designed in Figma, focuses on creating a clean and intuitive user experience for patients and professionals. The interface combines modern visuals with accessible navigation, ensuring clarity, usability, and efficiency throughout the app.</p>
                     </div>
                     
                     <div>
@@ -669,8 +669,8 @@
             <div class="hover-card">
                 <div class="card-content">
                     <div>
-                        <h3 class="card-title">Fantasy Game</h3>
-                        <p class="card-description">Complete character design system and mobile game interface for a fantasy RPG. Includes character progression, inventory management, and immersive battle systems.</p>
+                        <h3 class="card-title">Game Design</h3>
+                        <p class="card-description">This project showcases original character concepts and mobile game UI design, blending playful visuals with intuitive interfaces. Crafted in Figma and Photoshop, the work demonstrates creativity, vibrant aesthetics, and seamless usability for iOS gaming experiences.</p>
                     </div>
                     
                     <div>
@@ -688,8 +688,8 @@
             <div class="hover-card">
                 <div class="card-content">
                     <div>
-                        <h3 class="card-title">Portfolio Platform</h3>
-                        <p class="card-description">A modern web platform designed for creative professionals to showcase their work. Features responsive galleries, project filtering, and client testimonials.</p>
+                        <h3 class="card-title">Website NKRD</h3>
+                        <p class="card-description">A polished web design portfolio piece crafted in Adobe XD and Figma, featuring a clean and user-friendly homepage along with internal pages. The design emphasizes clarity, modern aesthetics, and seamless navigation, showcasing thoughtful visual branding and layout cohesion.</p>
                     </div>
                     
                     <div>
@@ -707,8 +707,8 @@
             <div class="hover-card">
                 <div class="card-content">
                     <div>
-                        <h3 class="card-title">ESchool Platform</h3>
-                        <p class="card-description">Educational technology solution designed to enhance remote learning experiences. Features interactive lessons, progress tracking, and gamified learning elements.</p>
+                        <h3 class="card-title">E-School App</h3>
+                        <p class="card-description">This medical app concept, designed in Figma, focuses on creating a clean and intuitive user experience for patients and professionals. The interface combines modern visuals with accessible navigation, ensuring clarity, usability, and efficiency throughout the app.</p>
                     </div>
                     
                     <div>
@@ -726,8 +726,8 @@
             <div class="hover-card">
                 <div class="card-content">
                     <div>
-                        <h3 class="card-title">EcoTrack App</h3>
-                        <p class="card-description">Environmental awareness app that helps users track their carbon footprint, find recycling centers, and participate in local sustainability initiatives.</p>
+                        <h3 class="card-title">Waste & Recycle App</h3>
+                        <p class="card-description">A clean and intuitive mobile app concept designed in Figma to simplify recycling workflows. The interface combines user-centric visuals with seamless navigation and clear actions, making sustainability approachable and efficient at a glance.</p>
                     </div>
                     
                     <div>
@@ -814,3 +814,34 @@
                 document.querySelectorAll('.nav-btn').forEach(btn => {
                     btn.classList.remove('active');
                     if (btn.textContent === current.nav) {
+                        btn.classList.add('active');
+                    }
+                });
+            }
+        });
+
+        // Add click functionality to project cards
+        document.querySelectorAll('.hover-card').forEach((card, index) => {
+            const links = [
+                'https://www.behance.net/gallery/169102117/UXUI-Design-Medical-APP',
+                'https://www.behance.net/gallery/177007863/character-and-mobile-game-design',
+                'https://www.behance.net/gallery/225896391/Website-Showcase',
+                'https://www.behance.net/gallery/195604979/Eschool-application',
+                'https://www.behance.net/gallery/148018157/Waste-Recycle-app'
+            ];
+            
+            card.addEventListener('click', function() {
+                if (links[index]) {
+                    window.open(links[index], '_blank');
+                }
+            });
+        });
+
+        // Contact form submission
+        document.getElementById('contactForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('Thank you for your message! I\'ll get back to you soon.');
+        });
+    </script>
+
+        
