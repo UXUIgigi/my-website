@@ -137,6 +137,12 @@
             background: rgba(225, 131, 53, 0.08);
         }
 
+        .resume-btn.active {
+            background: #E18335;
+            color: white;
+            box-shadow: inset 0 4px 12px rgba(0,0,0,0.2);
+        }
+
         /* Hero Section */
         .hero {
             display: flex;
@@ -219,6 +225,7 @@
             padding: 80px 50px;
             max-width: 1200px;
             margin: 0 auto;
+            position: relative;
         }
 
         .projects h2 {
@@ -228,6 +235,21 @@
             color: #333;
             margin-bottom: 50px;
             text-align: center;
+            position: relative;
+        }
+
+        .projects-sheep {
+            position: absolute;
+            top: -20px;
+            right: 80px;
+            width: 80px;
+            height: 80px;
+            animation: float 3s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-10px) rotate(5deg); }
         }
 
         .project-grid {
@@ -266,7 +288,7 @@
             display: flex;
             flex-direction: column;
             justify-content: flex-start;
-            position: position: relative;
+            position: relative;
             gap: 10px;
             z-index: 2;
         }
@@ -374,7 +396,7 @@
 
         /* Contact Section */
         .contact {
-            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            background: transparent;
             padding: 100px 50px;
             text-align: center;
             color: #333;
@@ -463,32 +485,50 @@
         .submit-btn {
             align-self: center;
             border: none;
-            border-radius: 30px;
-            background: linear-gradient(135deg, #E18335 0%, #d16f2a 100%);
-            color: white;
+            border-radius: 25px;
+            font-family: 'Chango', cursive;
+            font-size: 20px;
+            font-weight: 400;
             cursor: pointer;
-            transition: all 0.4s ease;
-            box-shadow: 0 8px 25px rgba(225, 131, 53, 0.3);
+            background: #E18335;
+            color: white;
+            box-shadow: inset 0 4px 12px rgba(0,0,0,0.2);
+            border: 1px solid rgba(255,255,255,0.3);
+            backdrop-filter: blur(10px);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
             display: flex;
             align-items: center;
             gap: 12px;
-            padding: 16px 32px;
-            font-size: 16px;
-            font-weight: 600;
+            padding: 12px 24px;
         }
 
         .submit-btn:hover {
-            background: linear-gradient(135deg, #d16f2a 0%, #b85a1f 100%);
-            transform: translateY(-3px) scale(1.05);
-            box-shadow: 0 12px 35px rgba(225, 131, 53, 0.5);
+            transform: translateY(-2px);
         }
 
-        /* Footer */
+        .submit-arrow {
+            width: 24px;
+            height: 24px;
+            stroke: white;
+            stroke-width: 2.5;
+            fill: none;
+            transform: rotate(0deg);
+            transition: all 0.6s ease;
+            opacity: 1;
+        }
+
+        .submit-btn:hover .submit-arrow {
+            transform: translateX(100px);
+            opacity: 0;
+        }
+
+        /* Footer - Updated to match body background */
         footer {
-            background: transparent;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
             color: #333;
             text-align: center;
             padding: 30px 20px;
+            position: relative;
         }
 
         footer p {
@@ -499,6 +539,20 @@
             font-size: 12px;
             opacity: 0.7;
             margin-bottom: 0;
+        }
+
+        .footer-sheep {
+            position: absolute;
+            bottom: 20px;
+            left: 50px;
+            width: 60px;
+            height: 60px;
+            animation: bounce 2s ease-in-out infinite;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0px) scale(1); }
+            50% { transform: translateY(-8px) scale(1.05); }
         }
 
         @media (max-width: 1024px) {
@@ -513,8 +567,25 @@
 
         @media (max-width: 768px) {
             .navbar {
-                padding: 15px 20px;
+                padding: 15px 15px;
                 justify-content: center;
+            }
+
+            .nav-container {
+                padding: 6px;
+                border-radius: 25px;
+            }
+
+            .nav-btn {
+                padding: 10px 18px;
+                font-size: 16px;
+                border-radius: 20px;
+            }
+
+            .resume-btn {
+                padding: 10px 18px;
+                font-size: 16px;
+                border-radius: 20px;
             }
 
             .social-links {
@@ -620,7 +691,7 @@
 
         <!-- Resume Button -->
         <div class="resume-container">
-            <button class="resume-btn">Resume</button>
+            <button class="resume-btn" id="resumeBtn">Resume</button>
         </div>
     </nav>
 
@@ -645,6 +716,41 @@
     <!-- Projects Section -->
     <section class="projects" id="projects">
         <h2>Featured Projects</h2>
+        
+        <!-- Floating sheep decoration -->
+        <svg class="projects-sheep" viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg">
+            <g transform="translate(50, 50)">
+                <!-- Green sheep body -->
+                <path d="M50 200 C30 180, 20 160, 30 140 C40 120, 60 110, 80 115 C100 120, 120 125, 140 130 C160 135, 180 140, 200 150 C220 160, 240 170, 250 190 C260 210, 250 230, 240 250 C230 270, 210 280, 190 285 C170 290, 150 285, 130 280 C110 275, 90 270, 70 260 C50 250, 40 230, 45 210 Z" fill="#8FBC8F" stroke="#6B8E23" stroke-width="3"/>
+                <!-- Sheep face -->
+                <ellipse cx="150" cy="170" rx="40" ry="35" fill="#D2B48C" stroke="#8B7355" stroke-width="2"/>
+                <!-- Left ear -->
+                <ellipse cx="125" cy="155" rx="12" ry="18" fill="#D2B48C" stroke="#8B7355" stroke-width="2"/>
+                <!-- Right ear -->
+                <ellipse cx="175" cy="155" rx="12" ry="18" fill="#D2B48C" stroke="#8B7355" stroke-width="2"/>
+                <!-- Left eye -->
+                <circle cx="140" cy="165" r="8" fill="#228B22"/>
+                <circle cx="142" cy="163" r="3" fill="white"/>
+                <!-- Right eye -->
+                <circle cx="160" cy="165" r="8" fill="#228B22"/>
+                <circle cx="162" cy="163" r="3" fill="white"/>
+                <!-- Nose -->
+                <ellipse cx="150" cy="175" rx="3" ry="2" fill="#8B7355"/>
+                <!-- Mouth -->
+                <path d="M148 180 Q150 182 152 180" stroke="#8B7355" stroke-width="2" fill="none"/>
+                <circle cx="150" cy="181" r="2" fill="#FF69B4"/>
+                <!-- Legs -->
+                <rect x="120" y="250" width="12" height="20" fill="#D2B48C" stroke="#8B7355" stroke-width="2"/>
+                <rect x="140" y="250" width="12" height="20" fill="#D2B48C" stroke="#8B7355" stroke-width="2"/>
+                <rect x="160" y="250" width="12" height="20" fill="#D2B48C" stroke="#8B7355" stroke-width="2"/>
+                <rect x="180" y="250" width="12" height="20" fill="#D2B48C" stroke="#8B7355" stroke-width="2"/>
+                <!-- Hooves -->
+                <rect x="120" y="270" width="12" height="8" fill="#654321"/>
+                <rect x="140" y="270" width="12" height="8" fill="#654321"/>
+                <rect x="160" y="270" width="12" height="8" fill="#654321"/>
+                <rect x="180" y="270" width="12" height="8" fill="#654321"/>
+            </g>
+        </svg>
         
         <div class="project-grid">
             <div class="hover-card">
@@ -762,86 +868,52 @@
             
             <button type="submit" class="submit-btn">
                 <span>Send Message</span>
-                <span>→</span>
+                <svg class="submit-arrow" viewBox="0 0 24 24">
+                    <path d="M5 12H19M12 5L19 12L12 19"/>
+                </svg>
             </button>
         </form>
     </section>
 
     <!-- Footer -->
     <footer>
-        <p>&copy; 2025 Gigi Giorbelidze. All rights reserved.</p>
-        <p>Designed with ❤️ in Tbilisi</p>
-    </footer>
-
-    <script>
-        // Smooth scrolling navigation
-        document.querySelectorAll('.nav-btn').forEach(btn => {
-            btn.addEventListener('click', function(e) {
-                e.preventDefault();
-                const href = this.getAttribute('href');
-                const target = document.querySelector(href);
-                
-                if (target) {
-                    target.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
-                }
-            });
-        });
-
-        // Smart navigation updates based on scroll position
-        window.addEventListener('scroll', function() {
-            const sections = [
-                { id: 'home', nav: 'Home' },
-                { id: 'projects', nav: 'Work' },
-                { id: 'contact', nav: 'Contact' }
-            ];
-            
-            let current = '';
-            
-            sections.forEach(section => {
-                const element = document.getElementById(section.id);
-                if (element) {
-                    const rect = element.getBoundingClientRect();
-                    if (rect.top <= 200 && rect.bottom >= 200) {
-                        current = section;
-                    }
-                }
-            });
-            
-            if (current) {
-                document.querySelectorAll('.nav-btn').forEach(btn => {
-                    btn.classList.remove('active');
-                    if (btn.textContent === current.nav) {
-                        btn.classList.add('active');
-                    }
-                });
-            }
-        });
-
-        // Add click functionality to project cards
-        document.querySelectorAll('.hover-card').forEach((card, index) => {
-            const links = [
-                'https://www.behance.net/gallery/169102117/UXUI-Design-Medical-APP',
-                'https://www.behance.net/gallery/177007863/character-and-mobile-game-design',
-                'https://www.behance.net/gallery/225896391/Website-Showcase',
-                'https://www.behance.net/gallery/195604979/Eschool-application',
-                'https://www.behance.net/gallery/148018157/Waste-Recycle-app'
-            ];
-            
-            card.addEventListener('click', function() {
-                if (links[index]) {
-                    window.open(links[index], '_blank');
-                }
-            });
-        });
-
-        // Contact form submission
-        document.getElementById('contactForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-            alert('Thank you for your message! I\'ll get back to you soon.');
-        });
-    </script>
-
+        <!-- Pink sheep decoration -->
+        <svg class="footer-sheep" viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg">
+            <g transform="translate(50, 80)">
+                <!-- Pink sheep body -->
+                <path d="M50 180 C30 160, 25 140, 35 120 C45 100, 65 90, 85 95 C105 100, 125 105, 145 110 C165 115, 185 120, 205 130 C225 140, 245 150, 255 170 C265 190, 255 210, 245 230 C235 250, 215 260, 195 265 C175 270, 155 265, 135 260 C115 255, 95 250, 75 240 C55 230, 45 210, 50 190 Z" fill="#FF69B4" stroke="#DC143C" stroke-width="3"/>
+                <!-- Sheep face -->
+                <ellipse cx="150" cy="150" rx="35" ry="30" fill="#D2B48C" stroke="#8B7355" stroke-width="2"/>
+                <!-- Blue bow -->
+                <path d="M140 120 L160 120 L155 130 L145 130 Z" fill="#4169E1" stroke="#000080" stroke-width="1"/>
+                <circle cx="150" cy="125" r="4" fill="#000080"/>
+                <!-- Left ear -->
+                <ellipse cx="130" cy="140" rx="10" ry="15" fill="#D2B48C" stroke="#8B7355" stroke-width="2"/>
+                <!-- Right ear -->
+                <ellipse cx="170" cy="140" rx="10" ry="15" fill="#D2B48C" stroke="#8B7355" stroke-width="2"/>
+                <!-- Left eye -->
+                <circle cx="142" cy="145" r="6" fill="#DC143C"/>
+                <circle cx="144" cy="143" r="2" fill="white"/>
+                <!-- Right eye -->
+                <circle cx="158" cy="145" r="6" fill="#DC143C"/>
+                <circle cx="160" cy="143" r="2" fill="white"/>
+                <!-- Nose -->
+                <ellipse cx="150" cy="155" rx="2" ry="1.5" fill="#8B7355"/>
+                <!-- Mouth -->
+                <path d="M148 160 Q150 162 152 160" stroke="#8B7355" stroke-width="1.5" fill="none"/>
+                <!-- Legs -->
+                <rect x="125" y="230" width="10" height="18" fill="#D2B48C" stroke="#8B7355" stroke-width="2"/>
+                <rect x="142" y="230" width="10" height="18" fill="#D2B48C" stroke="#8B7355" stroke-width="2"/>
+                <rect x="158" y="230" width="10" height="18" fill="#D2B48C" stroke="#8B7355" stroke-width="2"/>
+                <rect x="175" y="230" width="10" height="18" fill="#D2B48C" stroke="#8B7355" stroke-width="2"/>
+                <!-- Hooves -->
+                <rect x="125" y="248" width="10" height="6" fill="#654321"/>
+                <rect x="142" y="248" width="10" height="6" fill="#654321"/>
+                <rect x="158" y="248" width="10" height="6" fill="#654321"/>
+                <rect x="175" y="248" width="10" height="6" fill="#654321"/>
+            </g>
+        </svg>
         
+        <p>&copy; 2025 Gigi Giorbelidze. All rights reserved.</p>
+        <p>Designed with love in Tbilisi</p>
+    </footer>
