@@ -775,74 +775,80 @@
     </footer>
 
     <script>
-        // Smooth scrolling navigation
-        document.querySelectorAll('.nav-btn').forEach(btn => {
-            btn.addEventListener('click', function(e) {
-                e.preventDefault();
-                const href = this.getAttribute('href');
-                const target = document.querySelector(href);
-                
-                if (target) {
-                    target.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
-                }
-            });
-        });
+// Navigation functionality
+function setActiveNav(element) {
+    document.querySelectorAll('.nav-btn').forEach(btn => {
+        btn.classList.remove('active');
+    });
+    element.classList.add('active');
+}
 
-        // Smart navigation updates based on scroll position
-        window.addEventListener('scroll', function() {
-            const sections = [
-                { id: 'home', nav: 'Home' },
-                { id: 'projects', nav: 'Work' },
-                { id: 'contact', nav: 'Contact' }
-            ];
-            
-            let current = '';
-            
-            sections.forEach(section => {
-                const element = document.getElementById(section.id);
-                if (element) {
-                    const rect = element.getBoundingClientRect();
-                    if (rect.top <= 200 && rect.bottom >= 200) {
-                        current = section;
-                    }
-                }
+// Smooth scrolling navigation
+document.querySelectorAll('.nav-btn').forEach(btn => {
+    btn.addEventListener('click', function(e) {
+        e.preventDefault();
+        setActiveNav(this);
+        const href = this.getAttribute('href');
+        const target = document.querySelector(href);
+        
+        if (target) {
+            target.scrollIntoView({
+                behavior: 'smooth',
+                block: 'start'
             });
-            
-            if (current) {
-                document.querySelectorAll('.nav-btn').forEach(btn => {
-                    btn.classList.remove('active');
-                    if (btn.textContent === current.nav) {
-                        btn.classList.add('active');
-                    }
-                });
+        }
+    });
+});
+
+// Smart navigation updates based on scroll position
+window.addEventListener('scroll', function() {
+    const sections = [
+        { id: 'home', nav: 'Home' },
+        { id: 'projects', nav: 'Work' },
+        { id: 'contact', nav: 'Contact' }
+    ];
+    
+    let current = '';
+    
+    sections.forEach(section => {
+        const element = document.getElementById(section.id);
+        if (element) {
+            const rect = element.getBoundingClientRect();
+            if (rect.top <= 200 && rect.bottom >= 200) {
+                current = section;
+            }
+        }
+    });
+    
+    if (current) {
+        document.querySelectorAll('.nav-btn').forEach(btn => {
+            btn.classList.remove('active');
+            if (btn.textContent === current.nav) {
+                btn.classList.add('active');
             }
         });
+    }
+});
 
-        // Add click functionality to project cards
-        document.querySelectorAll('.hover-card').forEach((card, index) => {
-            const links = [
-                'https://www.behance.net/gallery/169102117/UXUI-Design-Medical-APP',
-                'https://www.behance.net/gallery/177007863/character-and-mobile-game-design',
-                'https://www.behance.net/gallery/225896391/Website-Showcase',
-                'https://www.behance.net/gallery/195604979/Eschool-application',
-                'https://www.behance.net/gallery/148018157/Waste-Recycle-app'
-            ];
-            
-            card.addEventListener('click', function() {
-                if (links[index]) {
-                    window.open(links[index], '_blank');
-                }
-            });
-        });
+// Add click functionality to project cards
+document.querySelectorAll('.hover-card').forEach((card, index) => {
+    const links = [
+        'https://www.behance.net/gallery/169102117/UXUI-Design-Medical-APP',
+        'https://www.behance.net/gallery/177007863/character-and-mobile-game-design',
+        'https://www.behance.net/gallery/225896391/Website-Showcase',
+        'https://www.behance.net/gallery/195604979/Eschool-application',
+        'https://www.behance.net/gallery/148018157/Waste-Recycle-app'
+    ];
+    
+    card.addEventListener('click', function() {
+        if (links[index]) {
+            window.open(links[index], '_blank');
+        }
+    });
+});
 
-        // Contact form submission
-        document.getElementById('contactForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-            alert('Thank you for your message! I\'ll get back to you soon.');
-        });
-    </script>
-
-        
+// Contact form submission
+document.getElementById('contactForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+    alert('Thank you for your message! I\'ll get back to you soon.');
+});
