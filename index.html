@@ -95,7 +95,7 @@
             border-radius: 25px;
             font-family: 'Chango', cursive;
             font-size: 20px;
-            font- weight: 400;
+            font-weight: 400;
             cursor: pointer;
             transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
             text-decoration: none;
@@ -271,10 +271,10 @@
             border-radius: 20px;
             padding: 25px;
             cursor: pointer;
-            overflow: visible; /* important */
+            overflow: hidden;
             transition: all 0.6s cubic-bezier(0.25, 0.8, 0.25, 1);
-            height: auto; /* let it expand naturally */
-            min-height: 200px; /* keep some baseline */
+            height: auto;
+            min-height: 200px;
         }
 
         .hover-card:hover {
@@ -282,12 +282,25 @@
             border: none;
             border-radius: 20px 20px 20px 100px;
             transform: translateY(-5px);
+            min-height: 320px;
         }
 
         .card-content {
             color: white;
             height: 100%;
             display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            position: relative;
+            gap: 10px;
+            z-index: 2;
+        }
+            
+        .card-content:hover {
+            color: white;
+            height: 100%;
+            display: none;
+            oposity: zero;
             flex-direction: column;
             justify-content: flex-start;
             position: relative;
@@ -310,25 +323,36 @@
             margin-bottom: 0px;
             text-transform: none;
             flex-shrink: 0;
+            transition: all 0.6s cubic-bezier(0.25, 0.8, 0.25, 1);
+            overflow: hidden;
+            display: -webkit-box;
+            -webkit-line-clamp: 6;
+            -webkit-box-orient: vertical;
+        }
+
+        .hover-card:hover .card-description {
+            font-size: 12px;
+            opacity: 0.8;
+            -webkit-line-clamp: 3;
+            line-height: 1.4;
         }
 
         .card-image {
             width: 100%;
-            height: 150px; /* smaller so it fits inside 200px card */
+            height: 150px;
             border-radius: 12px;
             object-fit: cover;
             margin-top: 0px;
-            transition: transform 0.4s ease;
+            transition: all 0.6s cubic-bezier(0.25, 0.8, 0.25, 1);
             border: 0px solid rgba(255, 255, 255, 0.2);
             box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
         }
 
         .hover-card:hover .card-image {
-            transform: scale(1.02);
-            transform-origin: bottom
-            height: 200px;
+            height: 280px;
+            transform: scale(1.05);
             border-color: rgba(255, 255, 255, 0.4);
-            box-shadow: 0 6px 25px rgba(0, 0, 0, 0.3);
+            box-shadow: 0 8px 35px rgba(0, 0, 0, 0.4);
         }
 
         .card-button {
@@ -713,7 +737,9 @@
         </div>
         
         <div class="hero-character">
-            <img src="Komble.png.png" alt="Gigi's Profile" class="profile-image">
+            <div class="character-placeholder">
+                Character Image
+            </div>
         </div>
     </section>
 
@@ -722,7 +748,7 @@
         <h2>Featured Projects</h2>
         
         <!-- Floating sheep decoration -->
-        <img src="blueship.png" alt="sheep" class="projects-sheep" />
+        <div class="projects-sheep">🐑</div>
         
         <div class="project-grid">
             <div class="hover-card">
@@ -733,64 +759,7 @@
                     </div>
                     
                     <div>
-                        <img src="cover.png" alt="Medical app interface" class="card-image">
-                    </div>
-                </div>
-                
-                <div class="card-button">
-                    <svg class="arrow-icon" viewBox="0 0 24 24">
-                        <path d="M7 17L17 7M17 7H7M17 7V17"/>
-                    </svg>
-                </div>
-            </div>
-
-            <div class="hover-card">
-                <div class="card-content">
-                    <div>
-                        <h3 class="card-title">Game Design</h3>
-                        <p class="card-description">This project showcases original character concepts and mobile game UI design, blending playful visuals with intuitive interfaces. Crafted in Figma and Photoshop, the work demonstrates creativity, vibrant aesthetics, and seamless usability for iOS gaming experiences.</p>
-                    </div>
-                    
-                    <div>
-                        <img src="gamedesign.jpg" alt="Game character design" class="card-image">
-                    </div>
-                </div>
-                
-                <div class="card-button">
-                    <svg class="arrow-icon" viewBox="0 0 24 24">
-                        <path d="M7 17L17 7M17 7H7M17 7V17"/>
-                    </svg>
-                </div>
-            </div>
-
-            <div class="hover-card">
-                <div class="card-content">
-                    <div>
-                        <h3 class="card-title">Website NKRD</h3>
-                        <p class="card-description">A polished web design portfolio piece crafted in Adobe XD and Figma, featuring a clean and user-friendly homepage along with internal pages. The design emphasizes clarity, modern aesthetics, and seamless navigation, showcasing thoughtful visual branding and layout cohesion.</p>
-                    </div>
-                    
-                    <div>
-                        <img src="NKRD.jpg" alt="Portfolio platform" class="card-image">
-                    </div>
-                </div>
-                
-                <div class="card-button">
-                    <svg class="arrow-icon" viewBox="0 0 24 24">
-                        <path d="M7 17L17 7M17 7H7M17 7V17"/>
-                    </svg>
-                </div>
-            </div>
-
-            <div class="hover-card">
-                <div class="card-content">
-                    <div>
-                        <h3 class="card-title">E-School App</h3>
-                        <p class="card-description">This medical app concept, designed in Figma, focuses on creating a clean and intuitive user experience for patients and professionals. The interface combines modern visuals with accessible navigation, ensuring clarity, usability, and efficiency throughout the app.</p>
-                    </div>
-                    
-                    <div>
-                        <img src="eschoolapp.jpg" alt="E-learning platform" class="card-image">
+                        <div class="card-image" style="background: linear-gradient(45deg, #4ade80, #22c55e); display: flex; align-items: center; justify-content: center; color: white; font-weight: bold;">Medical App UI</div>
                     </div>
                 </div>
                 
@@ -809,7 +778,7 @@
                     </div>
                     
                     <div>
-                        <img src="Leafy.jpg.jpg" alt="Sustainability app" class="card-image">
+                        <div class="card-image" style="background: linear-gradient(45deg, #10b981, #059669); display: flex; align-items: center; justify-content: center; color: white; font-weight: bold;">Recycle App</div>
                     </div>
                 </div>
                 
@@ -944,4 +913,61 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 </script>
 </body>
-</html>
+</html>L17 7M17 7H7M17 7V17"/>
+                    </svg>
+                </div>
+            </div>
+
+            <div class="hover-card">
+                <div class="card-content">
+                    <div>
+                        <h3 class="card-title">Game Design</h3>
+                        <p class="card-description">This project showcases original character concepts and mobile game UI design, blending playful visuals with intuitive interfaces. Crafted in Figma and Photoshop, the work demonstrates creativity, vibrant aesthetics, and seamless usability for iOS gaming experiences.</p>
+                    </div>
+                    
+                    <div>
+                        <div class="card-image" style="background: linear-gradient(45deg, #8b5cf6, #a855f7); display: flex; align-items: center; justify-content: center; color: white; font-weight: bold;">Game Characters</div>
+                    </div>
+                </div>
+                
+                <div class="card-button">
+                    <svg class="arrow-icon" viewBox="0 0 24 24">
+                        <path d="M7 17L17 7M17 7H7M17 7V17"/>
+                    </svg>
+                </div>
+            </div>
+
+            <div class="hover-card">
+                <div class="card-content">
+                    <div>
+                        <h3 class="card-title">Website NKRD</h3>
+                        <p class="card-description">A polished web design portfolio piece crafted in Adobe XD and Figma, featuring a clean and user-friendly homepage along with internal pages. The design emphasizes clarity, modern aesthetics, and seamless navigation, showcasing thoughtful visual branding and layout cohesion.</p>
+                    </div>
+                    
+                    <div>
+                        <div class="card-image" style="background: linear-gradient(45deg, #06b6d4, #0891b2); display: flex; align-items: center; justify-content: center; color: white; font-weight: bold;">NKRD Website</div>
+                    </div>
+                </div>
+                
+                <div class="card-button">
+                    <svg class="arrow-icon" viewBox="0 0 24 24">
+                        <path d="M7 17L17 7M17 7H7M17 7V17"/>
+                    </svg>
+                </div>
+            </div>
+
+            <div class="hover-card">
+                <div class="card-content">
+                    <div>
+                        <h3 class="card-title">E-School App</h3>
+                        <p class="card-description">This medical app concept, designed in Figma, focuses on creating a clean and intuitive user experience for patients and professionals. The interface combines modern visuals with accessible navigation, ensuring clarity, usability, and efficiency throughout the app.</p>
+                    </div>
+                    
+                    <div>
+                        <div class="card-image" style="background: linear-gradient(45deg, #f59e0b, #d97706); display: flex; align-items: center; justify-content: center; color: white; font-weight: bold;">E-School Interface</div>
+                    </div>
+                </div>
+                
+                <div class="card-button">
+                    <svg class="arrow-icon" viewBox="0 0 24 24">
+                        <path d="M7 17
