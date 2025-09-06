@@ -355,7 +355,7 @@
             cursor: pointer;
             overflow: visible;
             transition: all 0.6s cubic-bezier(0.25, 0.8, 0.25, 1);
-            min-height: 200px;
+            min-height: 210px;
             display: flex;
         }
 
@@ -1005,10 +1005,23 @@ document.addEventListener('DOMContentLoaded', function() {
     const savedTheme = localStorage.getItem('theme') || 'light';
     document.body.setAttribute('data-theme', savedTheme);
     
-    // Set initial icon
+    // Set initial desktop icon
     const toggleIcon = document.querySelector('.toggle-icon');
-    if (savedTheme === 'dark') {
+    if (toggleIcon && savedTheme === 'dark') {
         toggleIcon.innerHTML = '<path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>';
+    }
+    
+    // Set initial mobile theme icons
+    const lightIcon = document.querySelector('.theme-icon-light');
+    const darkIcon = document.querySelector('.theme-icon-dark');
+    if (lightIcon && darkIcon) {
+        if (savedTheme === 'dark') {
+            lightIcon.style.display = 'none';
+            darkIcon.style.display = 'block';
+        } else {
+            lightIcon.style.display = 'block';
+            darkIcon.style.display = 'none';
+        }
     }
 
     // Navigation functionality
