@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -28,14 +27,37 @@
             box-sizing: border-box;
         }
 
+        :root {
+            --bg-gradient: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            --text-primary: #333;
+            --text-secondary: #666;
+            --card-bg: rgba(255, 255, 255, 0.9);
+            --glass-bg: rgba(255, 255, 255, 0.9);
+            --input-bg: rgba(255, 255, 255, 0.8);
+            --shadow-light: rgba(0,0,0,0.1);
+            --shadow-medium: rgba(0,0,0,0.2);
+        }
+
+        [data-theme="dark"] {
+            --bg-gradient: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            --text-primary: #ffffff;
+            --text-secondary: #b0b0b0;
+            --card-bg: rgba(30, 30, 50, 0.9);
+            --glass-bg: rgba(30, 30, 50, 0.9);
+            --input-bg: rgba(30, 30, 50, 0.8);
+            --shadow-light: rgba(0,0,0,0.3);
+            --shadow-medium: rgba(0,0,0,0.5);
+        }
+
         body {
             font-family: 'Encode Sans', sans-serif;
             font-weight: 400;
             font-size: 14px;
-            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
-            color: #333;
+            background: var(--bg-gradient);
+            color: var(--text-primary);
             line-height: 1.6;
             overflow-x: hidden;
+            transition: all 0.3s ease;
         }
 
         /* Navigation */
@@ -62,17 +84,17 @@
             width: 45px;
             height: 45px;
             border-radius: 50%;
-            background: rgba(255, 255, 255, 0.9);
+            background: var(--glass-bg);
             backdrop-filter: blur(10px);
             border: 1px solid rgba(255,255,255,0.2);
             display: flex;
             align-items: center;
             justify-content: center;
-            color: #666;
+            color: var(--text-secondary);
             font-size: 18px;
             text-decoration: none;
             transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            box-shadow: 0 4px 15px var(--shadow-light);
         }
 
         .social-btn:hover {
@@ -89,14 +111,14 @@
         }
 
         .nav-container {
-            background: rgba(255, 255, 255, 0.9);
+            background: var(--glass-bg);
             backdrop-filter: blur(10px);
             border-radius: 30px;
             padding: 8px;
             display: flex;
             gap: 12px;
             justify-content: center;
-            box-shadow: 0 8px 32px rgba(0,0,0,0.1);
+            box-shadow: 0 8px 32px var(--shadow-light);
             border: 1px solid rgba(255,255,255,0.2);
         }
 
@@ -117,9 +139,9 @@
             text-decoration: none;
             display: inline-block;
             position: relative;
-            background: rgba(255, 255, 255, 0.9);
-            color: #666;
-            box-shadow: inset 0 4px 12px rgba(0,0,0,0.12);
+            background: var(--glass-bg);
+            color: var(--text-secondary);
+            box-shadow: inset 0 4px 12px var(--shadow-medium);
             backdrop-filter: blur(10px);
         }
 
@@ -133,6 +155,45 @@
             color: white;
         }
 
+        /* Dark Mode Toggle */
+        .dark-mode-toggle {
+            position: relative;
+            width: 60px;
+            height: 30px;
+            background: var(--glass-bg);
+            border-radius: 30px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            padding: 3px;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255,255,255,0.2);
+            box-shadow: 0 4px 15px var(--shadow-light);
+            backdrop-filter: blur(10px);
+        }
+
+        .toggle-slider {
+            width: 24px;
+            height: 24px;
+            background: #E18335;
+            border-radius: 50%;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+        }
+
+        [data-theme="dark"] .toggle-slider {
+            transform: translateX(30px);
+        }
+
+        .toggle-icon {
+            width: 12px;
+            height: 12px;
+            fill: white;
+        }
+
         .resume-btn {
             padding: 12px 24px;
             border: none;
@@ -141,9 +202,9 @@
             font-size: 20px;
             font-weight: 400;
             cursor: pointer;
-            background: rgba(255, 255, 255, 0.9);
-            color: #666;
-            box-shadow: inset 0 4px 12px rgba(0,0,0,0.12);
+            background: var(--glass-bg);
+            color: var(--text-secondary);
+            box-shadow: inset 0 4px 12px var(--shadow-medium);
             border: 1px solid rgba(255,255,255,0.3);
             backdrop-filter: blur(10px);
             transition: all 0.4s ease;
@@ -153,13 +214,19 @@
         .resume-btn:hover {
             transform: translateY(-2px);
             background: rgba(225, 131, 53, 0.08);
-            box-shadow: inset 0 4px 12px rgba(0,0,0,0.2);
+            box-shadow: inset 0 4px 12px var(--shadow-medium);
         }
 
         .resume-btn.active {
             background: #E18335;
             color: white;
-            box-shadow: inset 0 4px 12px rgba(0,0,0,0.2);
+            box-shadow: inset 0 4px 12px var(--shadow-medium);
+        }
+
+        .nav-right {
+            display: flex;
+            align-items: center;
+            gap: 15px;
         }
 
         /* Hero Section */
@@ -195,14 +262,14 @@
             font-size: 32px;
             font-weight: 500;
             margin-bottom: 10px;
-            color: #333;
+            color: var(--text-primary);
         }
 
         .hero-description p {
             font-family: 'Encode Sans', sans-serif;
             font-size: 16px;
             font-weight: 400;
-            color: #666;
+            color: var(--text-secondary);
             margin-bottom: 10px;
             line-height: 1.6;
         }
@@ -251,7 +318,7 @@
             font-family: 'Coiny', cursive;
             font-size: 60px;
             font-weight: 400;
-            color: #333;
+            color: var(--text-primary);
             margin-bottom: 50px;
             text-align: center;
             position: relative;
@@ -273,25 +340,24 @@
 
         .project-grid {
             display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 30px;
+            grid-template-columns: 1fr;
+            gap: 0px;
             margin-bottom: 60px;
         }
 
-        /* Updated Hover Card Styles with larger images and border */
+        /* Updated Hover Card Styles - Bigger and Vertical */
         .hover-card {
             position: relative;
             width: 100%;
-            height: 200px;
             background: #6F8695;
             border: none;
             border-radius: 20px;
-            padding: 25px;
             cursor: pointer;
-            overflow: visible; /* important */
+            overflow: visible;
             transition: all 0.6s cubic-bezier(0.25, 0.8, 0.25, 1);
-            height: auto; /* let it expand naturally */
-            min-height: 200px; /* keep some baseline */
+            min-height: 200px;
+            display: flex;
+            margin-bottom: 2px;
         }
 
         .hover-card:hover {
@@ -303,38 +369,48 @@
 
         .card-content {
             color: white;
-            height: 100%;
+            display: flex;
+            align-items: center;
+            position: relative;
+            z-index: 2;
+            width: 100%;
+            padding: 40px;
+            gap: 40px;
+        }
+
+        .card-text {
+            flex: 1;
             display: flex;
             flex-direction: column;
-            justify-content: flex-start;
-            position: relative;
-            gap: 10px;
-            z-index: 2;
+            justify-content: center;
         }
 
         .card-title {
-            font-size: 24px;
+            font-size: 32px;
             font-weight: 700;
-            margin-bottom: 12px;
+            margin-bottom: 15px;
             line-height: 1.2;
             text-transform: uppercase;
         }
 
         .card-description {
-            font-size: 14px;
+            font-size: 16px;
             line-height: 1.5;
             opacity: 0.9;
-            margin-bottom: 0px;
             text-transform: none;
-            flex-shrink: 0;
+            max-width: 400px;
+        }
+
+        .card-image-container {
+            flex: 0 0 300px;
+            height: 200px;
         }
 
         .card-image {
             width: 100%;
-            height: 150px; /* smaller so it fits inside 200px card */
+            height: 100%;
             border-radius: 12px;
             object-fit: cover;
-            margin-top: 0px;
             transition: transform 0.4s ease;
             border: 0px solid rgba(255, 255, 255, 0.2);
             box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
@@ -342,8 +418,6 @@
 
         .hover-card:hover .card-image {
             transform: scale(1.02);
-            transform-origin: bottom
-            height: 200px;
             border-color: rgba(255, 255, 255, 0.4);
             box-shadow: 0 6px 25px rgba(0, 0, 0, 0.3);
         }
@@ -420,7 +494,7 @@
             background: transparent;
             padding: 100px 50px;
             text-align: center;
-            color: #333;
+            color: var(--text-primary);
             position: relative;
         }
 
@@ -433,7 +507,7 @@
             margin-left: auto;
             margin-right: auto;
             line-height: 1.2;
-            color: #333;
+            color: var(--text-primary);
         }
 
         .contact-form {
@@ -442,11 +516,11 @@
             display: flex;
             flex-direction: column;
             gap: 25px;
-            background: rgba(255, 255, 255, 0.9);
+            background: var(--glass-bg);
             backdrop-filter: blur(20px);
             padding: 40px;
             border-radius: 30px;
-            box-shadow: 0 20px 60px rgba(0,0,0,0.1);
+            box-shadow: 0 20px 60px var(--shadow-light);
             border: 1px solid rgba(255,255,255,0.2);
         }
 
@@ -465,9 +539,9 @@
             border: none;
             border-radius: 30px;
             font-size: 16px;
-            background: rgba(255, 255, 255, 0.8);
-            color: #333;
-            box-shadow: inset 0 4px 15px rgba(0,0,0,0.1);
+            background: var(--input-bg);
+            color: var(--text-primary);
+            box-shadow: inset 0 4px 15px var(--shadow-light);
             border: 2px solid transparent;
             transition: all 0.4s ease;
             font-family: inherit;
@@ -477,7 +551,11 @@
             outline: none;
             box-shadow: inset 0 4px 15px rgba(225, 131, 53, 0.2);
             border-color: #E18335;
-            background: rgba(255, 255, 255, 0.95);
+            background: var(--input-bg);
+        }
+
+        .form-input::placeholder {
+            color: var(--text-secondary);
         }
 
         .form-textarea {
@@ -486,12 +564,12 @@
             border: none;
             border-radius: 25px;
             font-size: 16px;
-            background: rgba(255, 255, 255, 0.8);
-            color: #333;
+            background: var(--input-bg);
+            color: var(--text-primary);
             resize: vertical;
             min-height: 140px;
             font-family: inherit;
-            box-shadow: inset 0 4px 15px rgba(0,0,0,0.1);
+            box-shadow: inset 0 4px 15px var(--shadow-light);
             border: 2px solid transparent;
             transition: all 0.4s ease;
         }
@@ -500,7 +578,11 @@
             outline: none;
             box-shadow: inset 0 4px 15px rgba(225, 131, 53, 0.2);
             border-color: #E18335;
-            background: rgba(255, 255, 255, 0.95);
+            background: var(--input-bg);
+        }
+
+        .form-textarea::placeholder {
+            color: var(--text-secondary);
         }
 
         .submit-btn {
@@ -513,7 +595,7 @@
             cursor: pointer;
             background: #E18335;
             color: white;
-            box-shadow: inset 0 4px 12px rgba(0,0,0,0.2);
+            box-shadow: inset 0 4px 12px var(--shadow-medium);
             border: 1px solid rgba(255,255,255,0.3);
             backdrop-filter: blur(10px);
             transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
@@ -543,10 +625,10 @@
             opacity: 0;
         }
 
-        /* Footer - Updated to match body background */
+        /* Footer */
         footer {
-            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
-            color: #333;
+            background: var(--bg-gradient);
+            color: var(--text-primary);
             text-align: center;
             padding: 30px 20px;
             position: relative;
@@ -577,8 +659,17 @@
         }
 
         @media (max-width: 1024px) {
-            .project-grid {
-                grid-template-columns: repeat(2, 1fr);
+            .card-content {
+                flex-direction: column;
+                text-align: center;
+                gap: 20px;
+                padding: 30px;
+            }
+
+            .card-image-container {
+                flex: none;
+                width: 100%;
+                height: 200px;
             }
             
             .hero h1 {
@@ -625,7 +716,7 @@
                 font-size: 16px;
             }
 
-            .resume-container {
+            .nav-right {
                 display: none;
             }
 
@@ -645,14 +736,9 @@
                 font-size: 60px;
             }
 
-            .project-grid {
-                grid-template-columns: 1fr;
-                margin-left: 60px;
-                padding: 0 20px;
-            }
-
             .projects {
                 padding: 80px 20px;
+                margin-left: 60px;
             }
 
             .contact h2 {
@@ -663,21 +749,16 @@
                 flex-direction: column;
             }
 
-            .hover-card {
-                height: 450px;
+            .card-content {
                 padding: 20px;
             }
 
             .card-title {
-                font-size: 20px;
+                font-size: 24px;
             }
 
             .card-description {
-                font-size: 13px;
-            }
-
-            .card-image {
-                height: 180px;
+                font-size: 14px;
             }
         }
     </style>
@@ -710,8 +791,15 @@
             </div>
         </div>
 
-        <!-- Resume Button -->
-        <div class="resume-container">
+        <!-- Right Side - Dark Mode Toggle and Resume -->
+        <div class="nav-right">
+            <div class="dark-mode-toggle" onclick="toggleDarkMode()">
+                <div class="toggle-slider">
+                    <svg class="toggle-icon" viewBox="0 0 24 24">
+                        <path d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/>
+                    </svg>
+                </div>
+            </div>
             <a href="gigiResume.pdf" download="gigiResume.pdf" class="resume-btn" id="resumeBtn">Resume</a>
         </div>
     </nav>
@@ -744,12 +832,12 @@
         <div class="project-grid">
             <div class="hover-card">
                 <div class="card-content">
-                    <div>
+                    <div class="card-text">
                         <h3 class="card-title">Medical App</h3>
-                        <p class="card-description">This medical app concept, designed in Figma, focuses on creating a clean and intuitive user experience for patients and professionals. The interface combines modern visuals with accessible navigation, ensuring clarity, usability, and efficiency throughout the app.</p>
+                        <p class="card-description">Clean and intuitive medical app interface designed for patients and healthcare professionals.</p>
                     </div>
                     
-                    <div>
+                    <div class="card-image-container">
                         <img src="cover.png" alt="Medical app interface" class="card-image">
                     </div>
                 </div>
@@ -763,12 +851,12 @@
 
             <div class="hover-card">
                 <div class="card-content">
-                    <div>
+                    <div class="card-text">
                         <h3 class="card-title">Game Design</h3>
-                        <p class="card-description">This project showcases original character concepts and mobile game UI design, blending playful visuals with intuitive interfaces. Crafted in Figma and Photoshop, the work demonstrates creativity, vibrant aesthetics, and seamless usability for iOS gaming experiences.</p>
+                        <p class="card-description">Original character concepts and mobile game UI design with vibrant aesthetics.</p>
                     </div>
                     
-                    <div>
+                    <div class="card-image-container">
                         <img src="gamedesign.jpg" alt="Game character design" class="card-image">
                     </div>
                 </div>
@@ -782,12 +870,12 @@
 
             <div class="hover-card">
                 <div class="card-content">
-                    <div>
+                    <div class="card-text">
                         <h3 class="card-title">Website NKRD</h3>
-                        <p class="card-description">A polished web design portfolio piece crafted in Adobe XD and Figma, featuring a clean and user-friendly homepage along with internal pages. The design emphasizes clarity, modern aesthetics, and seamless navigation, showcasing thoughtful visual branding and layout cohesion.</p>
+                        <p class="card-description">Modern web design portfolio featuring clean aesthetics and seamless navigation.</p>
                     </div>
                     
-                    <div>
+                    <div class="card-image-container">
                         <img src="NKRD.jpg" alt="Portfolio platform" class="card-image">
                     </div>
                 </div>
@@ -801,12 +889,12 @@
 
             <div class="hover-card">
                 <div class="card-content">
-                    <div>
+                    <div class="card-text">
                         <h3 class="card-title">E-School App</h3>
-                        <p class="card-description">This medical app concept, designed in Figma, focuses on creating a clean and intuitive user experience for patients and professionals. The interface combines modern visuals with accessible navigation, ensuring clarity, usability, and efficiency throughout the app.</p>
+                        <p class="card-description">Educational platform interface combining modern visuals with accessible navigation.</p>
                     </div>
                     
-                    <div>
+                    <div class="card-image-container">
                         <img src="eschoolapp.jpg" alt="E-learning platform" class="card-image">
                     </div>
                 </div>
@@ -820,12 +908,12 @@
 
             <div class="hover-card">
                 <div class="card-content">
-                    <div>
+                    <div class="card-text">
                         <h3 class="card-title">Waste & Recycle App</h3>
-                        <p class="card-description">A clean and intuitive mobile app concept designed in Figma to simplify recycling workflows. The interface combines user-centric visuals with seamless navigation and clear actions, making sustainability approachable and efficient at a glance.</p>
+                        <p class="card-description">Intuitive mobile app design simplifying recycling workflows for sustainable living.</p>
                     </div>
                     
-                    <div>
+                    <div class="card-image-container">
                         <img src="Leafy.jpg.jpg" alt="Sustainability app" class="card-image">
                     </div>
                 </div>
@@ -874,6 +962,37 @@
     <script>
 // Wait for DOM to be fully loaded
 document.addEventListener('DOMContentLoaded', function() {
+    // Dark mode functionality
+    function toggleDarkMode() {
+        const body = document.body;
+        const currentTheme = body.getAttribute('data-theme');
+        const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+        
+        body.setAttribute('data-theme', newTheme);
+        localStorage.setItem('theme', newTheme);
+        
+        // Update toggle icon
+        const toggleIcon = document.querySelector('.toggle-icon');
+        if (newTheme === 'dark') {
+            toggleIcon.innerHTML = '<path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>';
+        } else {
+            toggleIcon.innerHTML = '<path d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/>';
+        }
+    }
+
+    // Make toggleDarkMode available globally
+    window.toggleDarkMode = toggleDarkMode;
+
+    // Load saved theme
+    const savedTheme = localStorage.getItem('theme') || 'light';
+    document.body.setAttribute('data-theme', savedTheme);
+    
+    // Set initial icon
+    const toggleIcon = document.querySelector('.toggle-icon');
+    if (savedTheme === 'dark') {
+        toggleIcon.innerHTML = '<path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>';
+    }
+
     // Navigation functionality
     function setActiveNav(element) {
         document.querySelectorAll('.nav-btn').forEach(btn => {
@@ -881,6 +1000,9 @@ document.addEventListener('DOMContentLoaded', function() {
         });
         element.classList.add('active');
     }
+
+    // Make setActiveNav available globally
+    window.setActiveNav = setActiveNav;
 
     // Smooth scrolling navigation
     document.querySelectorAll('.nav-btn').forEach(btn => {
